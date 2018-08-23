@@ -11,11 +11,11 @@ const server = http.createServer((request, response) => {
 
 
 	if (request.url === '/about'){
-		return response.end("the about page")
+		return response.end(aboutPage)
 	} else if (request.url === '/contact'){
-		return response.end('The contact page')
+		return response.end(contactPage)
 	} else if (request.url === '/'){
-		return response.end('The home page')
+		return response.end(homePage)
 	} else {
 		response.writeHead(404)
 	response.end('Page not found')
