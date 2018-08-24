@@ -50,4 +50,4 @@ https://docs.npmjs.com/getting-started/packages
 
 ??? basic - npm install involves a package, require(sth here) involves a module. Most npm packages are modules
 
-app.use tells the server where all the other helper files are located. app.use(express.static(public)) tells the server all my accompanying files such as css adn javascript are located in public folder. 
+Static Asset: app.use tells the server where all the other helper files are located. app.use(express.static(public)) tells the server all my accompanying files such as css adn javascript are located in public folder. 
