@@ -1,0 +1,27 @@
+go to startbootstrap.com and then browse all themes and templates
+open clean blog and then download it
+copy the contents of the .zip folder and paste it in your folder. rename it to ui
+
+then open your command prompt to the folder and type npm int -y
+		this initializes npm with all questions answered to yes
+
+type npm install express
+		installs express framework
+
+nodemon - npm install nodemon --save-dev
+	> installs a package that does not require you to restar server everytime you change some file
+	>--save-dev specifies to npm it is only for development process, not as a part of application
+
+
+	> after you've installed the nodemon, go to package.json
+		> under "scripts" near the top, type in "start": "node index.js"
+		its going to look like:
+				"scripts": {
+					"start": "node index.js"	
+				},
+		> then go to the command and type the name of the command. in this case, 
+				npm run start
+
+		after this, your session should start. if it does not, run command prompt in admin mode
+
+
