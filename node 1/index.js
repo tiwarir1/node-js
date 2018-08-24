@@ -40,6 +40,8 @@ const express = require('express')
 
 const app = new express()
 
+app.use(express.static('public'))		//increases functionality with express. Any browser that asks for functionality from server gets it from public folder
+
 // app.get('/', (request, response) => {					//get route
 // 	response.json({										//only sends json
 // 		name: 'Rabi Dada'
@@ -63,6 +65,8 @@ app.get('/about', (request, response) =>{
 app.get('/contact', (request, response) => {
 	response.sendFile(path.resolve(__dirname, 'contact.html'))
 })
+
+app.get('')
 
 app.listen(3000, () => {
 	console.log('App listening on 3000')
