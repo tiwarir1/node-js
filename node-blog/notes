@@ -24,4 +24,74 @@ nodemon - npm install nodemon --save-dev
 
 		after this, your session should start. if it does not, run command prompt in admin mode
 
+Using Edge templating engine
+	This helps us in modifying similar code in different pages. For eg. NavBars in different pages. We want to avaoid having to edit same code in different pages, so, we use this concept of templating engine.
 
+	instruction: go to command line and type- npm install express-edge --save
+
+	then follow the instruction in github under usage. its link is https://github.com/ecrmnn/express-edge
+
+	> go to the root folder and create a new directory named views and create a file index.edge. Copy code from index.html(in pages)
+
+	> then go to index.js(root folder) and in app.get('/', (require,response)), type 
+		response.render('index')
+	instead of the other response with a directory name and such. The final code will be 
+		app.get('/', (request, response) => {
+			response.render('index')
+		})
+
+
+	layouts:
+		create a new folder in the root/views folder named layouts. create a file inside layouts named app.edge. So, it is going to be node-blog/views/layouts/app.edge
+
+		cut and paste all the codes from index.edge into app.edge and delete everything other than navbar, footer, scripts and links. So, you'd delete header, main content, etc etc. then after the navbar code, define a section.
+			its syntax is @!section('content')
+
+		then go to index.edge(blank page) and write codes to direct content to the section defined in layout. its syntax is:
+			@layout('layouts.app')
+
+			@section('content')
+
+			<h1>dadadadadada</h1>
+
+			@endsection
+
+		follow this step for other pages too. This will create a placeholder for contents in a page with fixed layouts. here, in place of <h1></h1> tags, paset the contents of each page(header and main content) and check to see if it works properly. Change something in the navBar and see if the changes apply to all pages.
+
+
+		> for unique scripts on each pages, make a differnet placeholder for scripts in app.edge page. name it 		@!section('scripts')
+
+		to redirect the links to routes instead of html links, go to navbar and then change it to the routes in index.js file instead to the *.html links. (/ for home, /about for about...)
+
+
+MongoDB
+
+installing mongoDB -> npm i --save mongoose
+
+instantiate the new package -> const mongoose = require('mongoose') 
+
+connect the database -> mongoose.connect('mongodb://localhost/node-js-blog')
+
+create a folder named database in the root and create another one inside it and name it as models. refer to post.js for further information.
+
+Schema is a model for how the database collection is going to be like. It is the structure of the documents in the collection. Each schema will be different. for eg, a schema for posts - PostSchema would be initialized and set up as:
+		const PostSchema = new mongoose.Schema({
+			title: String,
+			description: String,
+			content: String
+		})
+
+the model or the schema itself is going to communicate with the database. 
+
+
+How the page connects to the database? const Post = mongoose.model('Post', PostSchema)
+
+
+
+CRUD 
+
+refer to test.js in root folder
+
+it is using the schema from database/models/post.js    			
+it'll create a new dataabse named node-js-test-blog and insert the data in the create command according to the schema
+the second part(error, post) will record any errors in the process along with the data of the entry and will display on the console as (error, post) if there is any error. otherwise it'll store the data in the database
