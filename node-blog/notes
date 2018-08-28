@@ -92,6 +92,16 @@ CRUD
 
 refer to test.js in root folder
 
+install mongodb and robo3t to work with mongodb
+after installation, create a new folder for storing db (in this case database/models)
+do to mongodb folder and open mongod.exe
+open robo3t and create a new connection (localhost with the port number as 27017)
+
 it is using the schema from database/models/post.js    			
 it'll create a new dataabse named node-js-test-blog and insert the data in the create command according to the schema
 the second part(error, post) will record any errors in the process along with the data of the entry and will display on the console as (error, post) if there is any error. otherwise it'll store the data in the database
+
+go to console and type 'node test.js' to see if it'll work
+
+
+to add values to the database, create a form (in a separate page called create.edge). 

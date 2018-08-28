@@ -24,6 +24,10 @@ app.get('/post', (request, response) =>{
 	response.render('post')
 })
 
+app.get('/post/new', (request, response) => {
+	response.render('create')
+})
+
 app.get('/contact', (request, response) => {
 	response.render('contact')
 })
