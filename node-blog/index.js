@@ -3,14 +3,21 @@ const path = require('path')
 const fs = require('fs')
 const expressEdge = require('express-edge')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+
+const Post = require('./database/models/Post')
 
 const app = new express()
 
-mongoose.connect('mongodb://localhost:27017/node-js-test-blog', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/node-js-blog', { useNewUrlParser: true })
 
 app.use(express.static('public'))
 app.use(expressEdge)
 app.set('views', `${__dirname}/views`)
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+
 
 app.get('/', (request, response) => {
 	response.render('index')
@@ -26,6 +33,12 @@ app.get('/post', (request, response) =>{
 
 app.get('/post/new', (request, response) => {
 	response.render('create')
+})
+
+app.post('/post/store', (request, response) => {
+	Post.create(request.body, (error, post) => {
+		response.redirect('/')
+	})
 })
 
 app.get('/contact', (request, response) => {

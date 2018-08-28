@@ -105,3 +105,23 @@ go to console and type 'node test.js' to see if it'll work
 
 
 to add values to the database, create a form (in a separate page called create.edge). 
+
+
+
+Body parser package
+
+		npm install body-parser
+
+browser sends POST data in an encoded format we cant understand
+this package will give us the data in a way that we can understand
+app.use(bodyparser.json()) -> a way for our application to to access/accept json data from browser or api client
+
+to input data in the database, we will need models(database/models).
+		app.post('/post/store', (request, response) => {
+			Post.create(request.body, (error, post) => {
+				response.redirect('/')
+			})
+		}) 
+
+	browser makes a post request to these endpoints(/posts/store). the model(database/models/Post.js) is going to create a new document using the dat acoming from the browser which is in request.body and then, we are going to response.redirect to the homepage('/').
+
