@@ -125,3 +125,20 @@ to input data in the database, we will need models(database/models).
 
 	browser makes a post request to these endpoints(/posts/store). the model(database/models/Post.js) is going to create a new document using the dat acoming from the browser which is in request.body and then, we are going to response.redirect to the homepage('/').
 
+app.get('/', async (request, response) => {
+
+	const posts = await Post.find({})
+	console.log(posts)
+	response.render('index', {
+		posts
+	})
+})
+this will use our Post model to find all the records in our database. we are going to use async (asynchronous) function since it is more advanced and looks elegant. 
+
+const posts = await Post.find({}) -> will store all the data({}) related to the Post model in posts constant. await will wait until this line of code is completed before moving to the next line.
+
+response.render('index', {
+		posts
+	}) -> once Post.find({}) is resolved or finds all the records, we are going to pass this in our view. we are going to pass it as a second arguemnt in the render function. it'll have objects of keys we want to pass. here, posts can also be written as posts: posts
+
+this will populate all the data from our database in the posts variable and render it in the index 

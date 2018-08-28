@@ -19,8 +19,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-app.get('/', (request, response) => {
-	response.render('index')
+app.get('/', async (request, response) => {
+
+	const posts = await Post.find({})
+	console.log(posts)
+	response.render('index', {
+		posts
+	})
 })
 
 app.get('/about', (request, response) => {
