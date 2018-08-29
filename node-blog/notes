@@ -154,3 +154,19 @@ Display dynamic data with templating engiene
 				{{ post._id }}		//echo out post._id. This can be anything. check index.edge for the html tags 
 
 				@endeach
+
+
+now we can see the id in the homepage. No go to post.edge and on title, description and content enter {{post.title}}, {{post.description}} and {{post.title}}. This'll bring content from database. But, we have not passed these contents yet.
+
+go to index.js and modify posts as :
+			app.get('/post/:id', async (request, response) =>{
+				const post = await Post.findById(request.params.id)
+				response.render('post', {
+					post
+				})
+			})
+
+	refer to async and await above. Thi'll pass all the data from Post model into post variable which we use to do {{post._id}} or other actions.
+
+
+	
